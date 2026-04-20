@@ -1,0 +1,9 @@
+Date,Transaction_ID,Name,UPI_ID,Amount,Payment_Mode
+2026-04-03,TXN1001,Ravi Kumar,ravi@upi,2000,UPI
+2026-04-08,TXN1002,Priya Sharma,priya@upi,3000,UPI
+2026-04-05,TXN1003,Arjun Reddy,arjun@upi,5500,Cash
+2026-04-02,TXN1004,Sneha Patel,sneha@upi,1500,Bank Transfer
+2026-04-10,TXN1005,Ravi Kumar,ravi@upi,1000,UPI
+2026-04-06,TXN1006,Priya Sharma,priya@upi,2000,UPI
+2026-04-04,TXN1007,Kiran Das,kiran@upi,4000,UPI
+2026-04-09,TXN1008,Meena Rao,meena@upi,2500,UPI
