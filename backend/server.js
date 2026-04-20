@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.use(express.static(path.join(__dirname, "../Frontend")));
 
 const studentRoutes = require("./routes/studentRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
@@ -25,7 +25,7 @@ app.use("/", teacherRoutes);
 require("./whatsappReminder");
 
 app.get("/", (req, res) => {
-    res.send("Server is running");
+    res.sendFile(path.join(__dirname, "../Frontend/index.html"));
 });
 
 app.listen(PORT, () => {
