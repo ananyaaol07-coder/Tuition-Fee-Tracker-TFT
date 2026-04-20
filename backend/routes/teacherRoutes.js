@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
+
 /* SIGNUP */
 router.post("/signup", (req, res) => {
     const { fullname, phone, email, password } = req.body;
@@ -38,6 +39,7 @@ router.post("/signup", (req, res) => {
         });
     });
 });
+
 /* CHECK USER */
 router.get("/check-user", (req, res) => {
     const phone = req.query.phone;
@@ -63,6 +65,7 @@ router.get("/check-user", (req, res) => {
         });
     });
 });
+
 /* LOGIN */
 router.post("/login", (req, res) => {
     const { email, password } = req.body;
