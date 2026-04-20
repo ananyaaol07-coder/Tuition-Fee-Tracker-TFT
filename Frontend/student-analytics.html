@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Analytics | TFT</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-brand">
+                    <div class="sidebar-logo-circle">₹</div>
+                </div>
+                <nav class="sidebar-menu">
+                    <a href="home.html" class="menu-item">Home</a>
+                    <a href="tuition-dashboard.html" class="menu-item">Fee Analytics</a>
+                    <a href="student-analytics.html" class="menu-item active">Student Analytics</a>
+                    <a href="notifications.html" class="menu-item">Notifications</a>
+                    <a href="settings.html" class="menu-item">Settings</a>
+                </nav>
+            </div>
+            <div class="sidebar-bottom">
+                <p class="user-name" id="userName">Teacher</p>
+                <button class="logout-btn" onclick="confirmLogout()">Logout</button>
+            </div>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Student Analytics</h1>
+                <div class="profile-pic" id="profilePic">T</div>
+            </header>
+            <div class="dashboard-wrap">
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Total Students</span>
+                        <h3 id="totalStudents">0</h3>
+                        <small>Currently enrolled</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Fees Fully Paid</span>
+                        <h3 id="paidStudents">0</h3>
+                        <small>Students with cleared dues</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Partial Payments</span>
+                        <h3 id="partialStudents">0</h3>
+                        <small>Need follow-up</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Pending Fees</span>
+                        <h3 id="pendingStudents">0</h3>
+                        <small>Students with dues left</small>
+                    </div>
+                </section>
+                <section class="analytics-cards">
+                    <div class="option-card" onclick="showData()">
+                        <h3>All Student Records</h3>
+                        <p>See complete student details</p>
+                    </div>
+                    <div class="option-card" onclick="window.location.href='home.html'">
+                        <h3>Dashboards</h3>
+                        <p>Back to main dashboard</p>
+                    </div>
+                </section>
+                <section class="table-card" id="tableCard">
+                    <div class="table-top-row">
+                        <h2 class="table-title">All Student Records</h2>
+                        <button class="back-btn" onclick="goBackMain()">← Back</button>
+                    </div>
+                    <table class="records-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Parent</th>
+                                <th>Class</th>
+                                <th>Fee Mode</th>
+                                <th>Total Fee</th>
+                                <th>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentTableBody"></tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+    <script>
+        function loadUserDetails() {
+            const user = JSON.parse(localStorage.getItem("teacherLogin"));
+            if (!user) return;
+            const name = user.fullname || user.name || "Teacher";
+            document.getElementById("userName").innerText = name;
+            document.getElementById("profilePic").innerText = name.charAt(0).toUpperCase();
+        }
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem("teacherLogin");
+                window.location.href = "login.html";
+            }
+        }
+        function goBackMain() {
+            document.querySelector(".stats-grid").style.display = "grid";
+            document.querySelector(".analytics-cards").style.display = "grid";
+            document.getElementById("tableCard").style.display = "none";
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+        let reportData = [];
+        let studentData = [];
+        async function loadData() {
+            try {
+                const r1 = await fetch("/report");
+                reportData = await r1.json();
+                const r2 = await fetch("/students");
+                studentData = await r2.json();
+                document.getElementById("totalStudents").innerText = reportData.length;
+                document.getElementById("paidStudents").innerText =
+                    reportData.filter(x => x.fee_status === "Paid").length;
+                document.getElementById("partialStudents").innerText =
+                    reportData.filter(x => x.fee_status === "Partial").length;
+                document.getElementById("pendingStudents").innerText =
+                    reportData.filter(x => x.fee_status === "Pending").length;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        function showData() {
+            document.querySelector(".stats-grid").style.display = "none";
+            document.querySelector(".analytics-cards").style.display = "none";
+            const table = document.getElementById("tableCard");
+            const body = document.getElementById("studentTableBody");
+            body.innerHTML = "";
+            studentData.forEach(x => {
+                body.innerHTML += `
+                    <tr>
+                    <td>${x.id}</td>
+                    <td>${x.name}</td>
+                    <td>${x.mob_no}</td>
+                    <td>${x.parent_name}</td>
+                    <td>${x.class_no}</td>
+                    <td>${x.fee_mode}</td>
+                    <td>₹${x.total_fee}</td>
+                    <td>${x.due_date}</td>
+                    </tr>`;
+            });
+            table.style.display = "block";
+            table.scrollIntoView({ behavior: "smooth" });
+        }
+        loadUserDetails();
+        loadData();
+    </script>
+</body>
+
+</html>

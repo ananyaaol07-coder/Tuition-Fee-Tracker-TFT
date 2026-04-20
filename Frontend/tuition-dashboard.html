@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Analytics | TFT</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-brand">
+                    <div class="sidebar-logo-circle">₹</div>
+                </div>
+                <nav class="sidebar-menu">
+                    <a href="home.html" class="menu-item">Home</a>
+                    <a href="tuition-dashboard.html" class="menu-item active">Fee Analytics</a>
+                    <a href="student-analytics.html" class="menu-item">Student Analytics</a>
+                    <a href="notifications.html" class="menu-item">Notifications</a>
+                    <a href="settings.html" class="menu-item">Settings</a>
+                </nav>
+            </div>
+            <div class="sidebar-bottom">
+                <p class="user-name" id="userName">Teacher</p>
+                <button class="logout-btn" onclick="confirmLogout()">Logout</button>
+            </div>
+        </aside>
+        <!-- MAIN -->
+        <main class="main-content">
+            <header class="topbar">
+                <h1>Fee Analytics</h1>
+                <div class="profile-pic" id="profilePic">T</div>
+            </header>
+            <div class="dashboard-wrap">
+                <!-- STATS -->
+                <section class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Total Fee Expected</span>
+                        <h3 id="expected">₹0</h3>
+                        <small>From all students</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Collected</span>
+                        <h3 id="collected">₹0</h3>
+                        <small>Total received</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Pending</span>
+                        <h3 id="pending">₹0</h3>
+                        <small>Total dues left</small>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">On-time Payments</span>
+                        <h3 id="ontime">0%</h3>
+                        <small>Across all students</small>
+                    </div>
+                </section>
+                <!-- ACTION -->
+                <section class="action-grid">
+                    <div class="action-card" onclick="showFeeTable()">
+                        <span>Records</span>
+                        <h3>All Fee Records</h3>
+                        <small>View paid / pending table</small>
+                    </div>
+                    <div class="action-card" onclick="showDashboard()">
+                        <span>Analytics</span>
+                        <h3>Dashboards</h3>
+                        <small>Open charts & trends</small>
+                    </div>
+                </section>
+                <!-- TABLE -->
+                <section class="table-card" id="feeTableSection">
+                    <div class="table-top-row">
+                        <h2 class="table-title">All Fee Records</h2>
+                        <button class="back-btn" onclick="goBackMain()">← Back</button>
+                    </div>
+                    <table class="records-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Total Fee</th>
+                                <th>Paid</th>
+                                <th>Pending</th>
+                                <th>Status</th>
+                                <th>Reminder</th>
+                                <th>Sent Count</th>
+                            </tr>
+                        </thead>
+                        <tbody id="feeTableBody"></tbody>
+                    </table>
+                </section>
+                <!-- DASHBOARD -->
+                <div id="dashboardSection">
+                    <div class="table-top-row">
+                        <h2 class="table-title">Dashboards</h2>
+                        <button class="back-btn" onclick="goBackMain()">← Back</button>
+                    </div>
+                    <section class="analytics-tabs">
+                        <button class="analytics-tab active" onclick="showAnalytics('monthly',this)">Monthly Fee
+                            Analytics</button>
+                        <button class="analytics-tab" onclick="showAnalytics('breakdown',this)">Collection
+                            Breakdown</button>
+                        <button class="analytics-tab" onclick="showAnalytics('paymentModes',this)">Payment
+                            Modes</button>
+                        <button class="analytics-tab" onclick="showAnalytics('summary',this)">Financial Summary</button>
+                    </section>
+                    <section class="analytics-panels">
+                        <div class="analytics-panel active" id="monthly">
+                            <div class="glass-card">
+                                <div class="card-head">
+                                    <h3>Monthly Fee Collection</h3>
+                                    <span>Amount Collected</span>
+                                </div>
+                                <div class="mini-list" id="monthlyList"></div>
+                            </div>
+                        </div>
+                        <div class="analytics-panel" id="breakdown">
+                            <div class="glass-card">
+                                <div class="card-head">
+                                    <h3>Collection Breakdown</h3>
+                                </div>
+                                <div class="mini-list" id="breakdownList"></div>
+                            </div>
+                        </div>
+                        <div class="analytics-panel" id="paymentModes">
+                            <div class="glass-card">
+                                <div class="card-head">
+                                    <h3>Payment Modes</h3>
+                                </div>
+                                <div class="bar-chart" id="modeChart"></div>
+                            </div>
+                        </div>
+                        <div class="analytics-panel" id="summary">
+                            <div class="glass-card">
+                                <div class="card-head">
+                                    <h3>Financial Summary</h3>
+                                </div>
+                                <div class="mini-list" id="summaryList"></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        function loadUserDetails() {
+            const user = JSON.parse(localStorage.getItem("teacherLogin"));
+            if (!user) return;
+            const name = user.fullname || user.name || "Teacher";
+            document.getElementById("userName").innerText = name;
+            document.getElementById("profilePic").innerText = name.charAt(0).toUpperCase();
+        }
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem("teacherLogin");
+                window.location.href = "login.html";
+            }
+        }
+        function showFeeTable() {
+            document.querySelector(".stats-grid").style.display = "none";
+            document.querySelector(".action-grid").style.display = "none";
+            document.getElementById("dashboardSection").style.display = "none";
+            document.getElementById("feeTableSection").style.display = "block";
+        }
+        function showDashboard() {
+            document.querySelector(".stats-grid").style.display = "none";
+            document.querySelector(".action-grid").style.display = "none";
+            document.getElementById("feeTableSection").style.display = "none";
+            document.getElementById("dashboardSection").style.display = "block";
+        }
+        function goBackMain() {
+            document.querySelector(".stats-grid").style.display = "grid";
+            document.querySelector(".action-grid").style.display = "grid";
+            document.getElementById("feeTableSection").style.display = "none";
+            document.getElementById("dashboardSection").style.display = "none";
+        }
+        function showAnalytics(id, btn) {
+            document.querySelectorAll(".analytics-panel").forEach(x => x.classList.remove("active"));
+            document.querySelectorAll(".analytics-tab").forEach(x => x.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+            btn.classList.add("active");
+        }
+        function getStatusClass(status) {
+            status = status.toLowerCase();
+            if (status.includes("paid")) return "paid";
+            if (status.includes("partial")) return "partial";
+            if (status.includes("pending")) return "pending";
+            if (status.includes("extra")) return "extra";
+            return "";
+        }
+        function getSentText(id) {
+            let count = Number(localStorage.getItem("reminder_" + id) || 0);
+            if (count === 0) return "Not Sent";
+            if (count === 1) return "Once";
+            if (count === 2) return "Twice";
+            return count + " Times";
+        }
+        function sendReminder(id, name, phone, pending) {
+            const msg =
+                `Hello ${name}, your pending fee of ₹${pending} is still due. Kindly pay soon.`;
+            const url =
+                `https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`;
+            /* open whatsapp */
+            window.open(url, "_blank");
+            /* when user comes back to dashboard */
+            window.onfocus = function () {
+                const sent = confirm(
+                    "Did you send the WhatsApp reminder message?"
+                );
+                if (sent) {
+                    let count =
+                        Number(localStorage.getItem("reminder_" + id) || 0);
+                    count++;
+                    localStorage.setItem("reminder_" + id, count);
+                    loadAnalytics();
+                }
+                /* remove event after one use */
+                window.onfocus = null;
+            };
+        }
+        async function loadAnalytics() {
+            try {
+                const r1 = await fetch("/payments");
+                const payments = await r1.json();
+                const r2 = await fetch("/report");
+                const report = await r2.json();
+                let collected = 0, expected = 0, pending = 0, paidCount = 0;
+                let online = 0, offline = 0;
+                const months = {
+                    January: 0, February: 0, March: 0, April: 0, May: 0, June: 0,
+                    July: 0, August: 0, September: 0, October: 0, November: 0, December: 0
+                };
+                payments.forEach(p => {
+                    collected += Number(p.amount || 0);
+                    if ((p.payment_mode || "").toLowerCase() == "online") online++;
+                    else offline++;
+                    const m = new Date(p.payment_date).toLocaleString("default", { month: "long" });
+                    months[m] += Number(p.amount || 0);
+                });
+                let table = "";
+                report.forEach(r => {
+                    expected += Number(r.total_fee || 0);
+                    pending += Number(r.remaining || 0);
+                    if (r.fee_status == "Paid") paidCount++;
+                    table += `
+<tr>
+<td>${r.id}</td>
+<td>${r.name}</td>
+<td>₹${r.total_fee}</td>
+<td>₹${r.paid}</td>
+<td>₹${r.remaining}</td>
+<td>
+<span class="status-badge ${getStatusClass(r.fee_status)}">
+${r.fee_status}
+</span>
+</td>
+<td>
+${(r.fee_status == "Pending" || r.fee_status == "Partial")
+                            ? `<button class="send-btn" onclick="sendReminder(${r.id},'${r.name}','${r.mob_no}','${r.remaining}')">Send</button>`
+                            : `<button class="send-btn disabled-btn" disabled>Send</button>`
+                        }
+</td>
+<td>${getSentText(r.id)}</td>
+</tr>
+`;
+                });
+                document.getElementById("feeTableBody").innerHTML = table;
+                document.getElementById("expected").innerText = "₹" + expected.toLocaleString();
+                document.getElementById("collected").innerText = "₹" + collected.toLocaleString();
+                document.getElementById("pending").innerText = "₹" + pending.toLocaleString();
+                document.getElementById("ontime").innerText =
+                    Math.round((paidCount / (report.length || 1)) * 100) + "%";
+                /* monthly */
+                let mhtml = "";
+                Object.entries(months).forEach(([m, v]) => {
+                    if (v > 0) {
+                        mhtml += `
+<div class="mini-item">
+<p>${m}</p>
+<strong>₹${v.toLocaleString()}</strong>
+</div>`;
+                    }
+                });
+                document.getElementById("monthlyList").innerHTML = mhtml;
+                /* breakdown */
+                document.getElementById("breakdownList").innerHTML = `
+<div class="mini-item">
+<p>Collected</p>
+<strong>₹${collected.toLocaleString()}</strong>
+</div>
+<div class="mini-item">
+<p>Pending</p>
+<strong>₹${pending.toLocaleString()}</strong>
+</div>`;
+                /* modes */
+                const totalModes = online + offline || 1;
+                document.getElementById("modeChart").innerHTML = `
+<div class="bar-row">
+<label>Online</label>
+<div class="bar-track">
+<div class="bar-fill" style="width:${(online / totalModes) * 100}%"></div>
+</div>
+</div>
+<div class="bar-row">
+<label>Offline</label>
+<div class="bar-track">
+<div class="bar-fill" style="width:${(offline / totalModes) * 100}%"></div>
+</div>
+</div>`;
+                /* summary */
+                document.getElementById("summaryList").innerHTML = `
+<div class="mini-item">
+<p>Total Students</p>
+<strong>${report.length}</strong>
+</div>
+<div class="mini-item">
+<p>Paid Students</p>
+<strong>${paidCount}</strong>
+</div>`;
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        loadUserDetails();
+        loadAnalytics();
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #d9d6e3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;   /* FIXED */
+  padding: 30px 0;
+}
+
+/* Wrapper */
+.page-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Card */
+.form-card {
+  background: #f5f4f8;
+  padding: 40px;
+  border-radius: 25px;
+  width: 420px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  text-align: center;
+
+  margin: 20px 0;
+}
+
+/* Heading */
+.form-card h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #2c2c54;
+  margin-bottom: 8px;
+}
+
+.form-card p {
+  font-size: 14px;
+  color: #7a7a9d;
+  margin-bottom: 25px;
+}
+
+/* Inputs */
+form input,
+form select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #d6d3e0;
+  background: #eceaf3;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #7b5cff;
+  background: #fff;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #7b5cff, #5a2bbf);
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(123, 92, 255, 0.3);
+}
+
+/* Back link */
+.back-link {
+  display: block;
+  margin-top: 18px;
+  text-decoration: none;
+  color: #7b5cff;
+  font-size: 14px;
+}
+
+/* Hidden */
+.hidden {
+  display: none;
+}
+/* SIDEBAR RUPEE LOGO */
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 42px;
+}
+
+.sidebar-logo-circle {
+  width: 62px;
+  height: 62px;
+  background: linear-gradient(135deg, #7c3aed, #5b21b6);
+  color: white;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: 700;
+  box-shadow: 0 10px 22px rgba(124, 58, 237, 0.28);
+}
+
+.sidebar-logo-subtext {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: 1px;
+  color: #efe7ff;
+}

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | TFT</title>
+
+    <link rel="stylesheet" href="home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="sidebar-top">
+
+                <div class="sidebar-brand">
+                    <div class="sidebar-logo-circle">₹</div>
+                </div>
+
+                <nav class="sidebar-menu">
+                    <a href="home.html" class="menu-item">Home</a>
+                    <a href="tuition-dashboard.html" class="menu-item">Fee Analytics</a>
+                    <a href="student-analytics.html" class="menu-item">Student Analytics</a>
+                    <a href="notifications.html" class="menu-item">Notifications</a>
+                    <a href="settings.html" class="menu-item active">Settings</a>
+                </nav>
+
+            </div>
+
+            <div class="sidebar-bottom">
+                <p class="user-name" id="sideUser">Teacher</p>
+                <button class="logout-btn" onclick="confirmLogout()">Logout</button>
+            </div>
+
+        </aside>
+
+
+
+        <!-- MAIN -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <h1>Settings</h1>
+                <div class="profile-pic" id="profileLetter">T</div>
+            </header>
+
+
+            <div class="dashboard-wrap">
+
+                <!-- ADD STUDENT -->
+                <a href="add_s.html" class="action-card"
+                    style="display:block;text-decoration:none;max-width:1000px;margin-top:15px;">
+
+                    <span>Students</span>
+                    <h3>Add New Student</h3>
+                    <small>Enter student details</small>
+
+                </a>
+
+
+
+                <!-- PROFILE -->
+                <section class="table-card" style="margin-top:30px;max-width:1000px;display:block;">
+
+                    <div class="table-top-row">
+                        <h2 class="table-title">👩‍🏫 Teacher Profile</h2>
+                    </div>
+
+                    <div class="profile-grid">
+
+                        <div class="profile-field">
+                            <label>Name</label>
+                            <input type="text" id="name" disabled>
+                        </div>
+
+                        <div class="profile-field">
+                            <label>Email</label>
+                            <input type="text" id="email" disabled>
+                        </div>
+
+                        <div class="profile-field">
+                            <label>Phone</label>
+                            <input type="text" id="mob_no" disabled>
+                        </div>
+
+                        <div class="profile-field">
+                            <label>Due Date</label>
+                            <input type="number" id="due_date" disabled>
+                        </div>
+
+                    </div>
+
+                    <button class="back-btn" style="margin-top:24px;" onclick="toggleEdit(this)">
+                        Edit Profile
+                    </button>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <script>
+
+        /* LOGOUT */
+        function confirmLogout() {
+
+            if (confirm("Are you sure you want to logout?")) {
+
+                localStorage.removeItem("teacherLogin");
+                window.location.href = "login.html";
+
+            }
+
+        }
+
+
+
+        /* LOAD FROM LOCAL STORAGE */
+        function loadTeacher() {
+
+            let loginData =
+                JSON.parse(localStorage.getItem("teacherLogin")) || {};
+
+            const fullName =
+                loginData.name ||
+                loginData.fullname ||
+                "Teacher";
+
+            const email =
+                loginData.email || "";
+
+            const phone =
+                loginData.mob_no ||
+                loginData.phone ||
+                "";
+
+            const dueDate =
+                loginData.due_date ||
+                loginData.dueDate ||
+                "";
+
+            document.getElementById("name").value = fullName;
+            document.getElementById("email").value = email;
+            document.getElementById("mob_no").value = phone;
+            document.getElementById("due_date").value = dueDate;
+
+            document.getElementById("sideUser").innerText = fullName;
+
+            document.getElementById("profileLetter").innerText =
+                fullName.charAt(0).toUpperCase();
+
+        }
+
+
+        /* EDIT / SAVE */
+        function toggleEdit(btn) {
+
+            const inputs =
+                document.querySelectorAll(".profile-field input");
+
+            /* EDIT MODE */
+            if (btn.innerText.trim() === "Edit Profile") {
+
+                inputs.forEach(x => x.disabled = false);
+                btn.innerText = "Save Profile";
+                return;
+
+            }
+
+
+            /* SAVE */
+            const teacherData = {
+
+                name:
+                    document.getElementById("name").value,
+
+                email:
+                    document.getElementById("email").value,
+
+                mob_no:
+                    document.getElementById("mob_no").value,
+
+                due_date:
+                    document.getElementById("due_date").value
+
+            };
+
+
+            localStorage.setItem(
+                "teacherLogin",
+                JSON.stringify(teacherData)
+            );
+
+            alert("Profile Updated Successfully");
+
+            inputs.forEach(x => x.disabled = true);
+
+            btn.innerText = "Edit Profile";
+
+            loadTeacher();
+
+        }
+
+
+
+        /* START */
+        loadTeacher();
+
+    </script>
+
+</body>
+
+</html>

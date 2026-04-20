@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuition Fee Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-box">
+      <div class="logo">₹</div>
+      <div class="logo-text">
+        <h2>Tuition Fee Tracker</h2>
+        <p>Smart Fee Management</p>
+      </div>
+    </div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-buttons">
+      <a href="login.html" class="btn login-btn">Login</a>
+      <a href="signup.html" class="btn signup-btn">Get Started</a>
+    </div>
+  </header>
+  <section class="hero">
+    <div class="hero-left">
+      <span class="tag">Simple. Smart. Organized.</span>
+      <h1>Manage Student Fees <br><span>Without Confusion</span></h1>
+      <p>
+        Tuition Fee Tracker helps teachers store student records, track paid and pending fees,
+        update payment details, and manage everything from one clean dashboard.
+      </p>
+      <div class="hero-buttons">
+        <a href="signup.html" class="btn primary-btn">Start Now</a>
+        <a href="#features" class="btn secondary-btn">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="dashboard-card main-card">
+        <h3>Fee Overview</h3>
+        <div class="stats">
+          <div class="stat-box">
+            <h4>120</h4>
+            <p>Students</p>
+          </div>
+          <div class="stat-box">
+            <h4>₹85,000</h4>
+            <p>Collected</p>
+          </div>
+          <div class="stat-box">
+            <h4>₹15,000</h4>
+            <p>Pending</p>
+          </div>
+        </div>
+      </div>
+      <div class="small-cards">
+        <div class="mini-card">
+          <h4>Recent Payment</h4>
+          <p>Riya Sharma paid ₹2,000</p>
+        </div>
+        <div class="mini-card">
+          <h4>Reminder</h4>
+          <p>8 students have pending dues</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="features-section" id="features">
+    <div class="section-heading">
+      <h2>Features for Easy Fee Management</h2>
+      <p>Everything needed to manage tuition fees in one place.</p>
+    </div>
+    <div class="slider-container">
+      <button class="slide-btn prev" aria-label="Previous feature">&#10094;</button>
+      <div class="slider">
+        <div class="slide active">
+          <div class="slide-icon">👨‍🎓</div>
+          <h3>Student Records</h3>
+          <p>Store student names, class details, contact info, and fee structure easily in one organized system.</p>
+        </div>
+        <div class="slide">
+          <div class="slide-icon">💳</div>
+          <h3>Fee Tracking</h3>
+          <p>Track total fees, paid amount, remaining balance, and due status clearly without confusion.</p>
+        </div>
+        <div class="slide">
+          <div class="slide-icon">🧾</div>
+          <h3>Payment Updates</h3>
+          <p>Update payment details whenever fees are paid through cash, UPI, or bank transfer.</p>
+        </div>
+        <div class="slide">
+          <div class="slide-icon">📊</div>
+          <h3>Reports</h3>
+          <p>View summaries of collected fees, pending amounts, and student-wise payment details in one view.</p>
+        </div>
+        <div class="slide">
+          <div class="slide-icon">🔔</div>
+          <h3>Reminders</h3>
+          <p>Identify students with due payments and manage reminders more efficiently.</p>
+        </div>
+        <div class="slide">
+          <div class="slide-icon">✅</div>
+          <h3>Simple Interface</h3>
+          <p>Use a clean and user-friendly layout that saves time and reduces manual mistakes.</p>
+        </div>
+      </div>
+      <button class="slide-btn next" aria-label="Next feature">&#10095;</button>
+    </div>
+    <div class="slider-dots">
+      <span class="dot active" data-slide="0"></span>
+      <span class="dot" data-slide="1"></span>
+      <span class="dot" data-slide="2"></span>
+      <span class="dot" data-slide="3"></span>
+      <span class="dot" data-slide="4"></span>
+      <span class="dot" data-slide="5"></span>
+    </div>
+  </section>
+  <section class="dashboard-preview" id="dashboard">
+    <div class="preview-left">
+      <h2>One Dashboard. Complete Control.</h2>
+      <p>
+        Get a quick view of student count, total collection, due payments, and recent activity.
+        This makes fee handling faster and more organized for teachers.
+      </p>
+      <ul>
+        <li>Track each student’s fee status</li>
+        <li>View paid and pending balances</li>
+        <li>Monitor recent payments</li>
+        <li>Reduce manual record errors</li>
+      </ul>
+    </div>
+    <div class="preview-right">
+      <div class="preview-card">
+        <div class="row">
+          <span>Total Students</span>
+          <strong>120</strong>
+        </div>
+        <div class="row">
+          <span>Fees Collected</span>
+          <strong>₹85,000</strong>
+        </div>
+        <div class="row">
+          <span>Pending Fees</span>
+          <strong>₹15,000</strong>
+        </div>
+        <div class="row">
+          <span>Payments Today</span>
+          <strong>12</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="about-section" id="about">
+    <div class="about-box">
+      <h2>About Tuition Fee Tracker</h2>
+      <p>
+        Tuition Fee Tracker is a web-based system designed for teachers to manage student fee
+        details in a simple and structured way. It reduces manual mistakes, improves record
+        management, tracks paid and pending fees clearly, and makes fee handling easier
+        through one organized platform.
+      </p>
+    </div>
+  </section>
+  <footer class="footer" id="contact">
+    <div>
+      <h3>Tuition Fee Tracker</h3>
+      <p>Organized fee management for teachers and tuition centers.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <p>Home | Features | Dashboard | About</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>support@tft.com</p>
+    </div>
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const slider = document.querySelector(".slider");
+      const slides = document.querySelectorAll(".slide");
+      const prevBtn = document.querySelector(".prev");
+      const nextBtn = document.querySelector(".next");
+      const dots = document.querySelectorAll(".dot");
+      let currentIndex = 0;
+      let autoSlide;
+      function updateSlider(index) {
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        slides.forEach((slide) => slide.classList.remove("active"));
+        dots.forEach((dot) => dot.classList.remove("active"));
+        slides[index].classList.add("active");
+        dots[index].classList.add("active");
+      }
+      function showNextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        updateSlider(currentIndex);
+      }
+      function showPrevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        updateSlider(currentIndex);
+      }
+      function startAutoSlide() {
+        autoSlide = setInterval(showNextSlide, 3500);
+      }
+      function resetAutoSlide() {
+        clearInterval(autoSlide);
+        startAutoSlide();
+      }
+      nextBtn.addEventListener("click", function () {
+        showNextSlide();
+        resetAutoSlide();
+      });
+      prevBtn.addEventListener("click", function () {
+        showPrevSlide();
+        resetAutoSlide();
+      });
+      dots.forEach((dot, index) => {
+        dot.addEventListener("click", function () {
+          currentIndex = index;
+          updateSlider(currentIndex);
+          resetAutoSlide();
+        });
+      });
+      updateSlider(currentIndex);
+      startAutoSlide();
+    });
+  </script>
+</body>
+</html>

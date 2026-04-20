@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Student | TFT</title>
+
+  <link rel="stylesheet" href="form-page.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <div class="page-wrapper">
+    <div class="form-card">
+
+      <h1>Add Student</h1>
+      <p>Fill in the student details below</p>
+
+      <form onsubmit="saveStudent(event)">
+
+        <input type="text" id="name" placeholder="Student Name" required />
+
+        <input type="text" id="parent_name" placeholder="Parent Name" required />
+
+        <input type="text" id="mob_no" placeholder="Contact Number" maxlength="10" required />
+
+        <input type="email" id="email" placeholder="Email Address" required />
+
+        <input type="text" id="class_no" placeholder="Class" required />
+
+        <input type="text" id="subjects" placeholder="Subject" required />
+
+        <input type="number" id="total_fee" placeholder="Total Fee" required />
+
+        <select id="fee_mode" required>
+          <option value="">Fee Mode</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Quarterly">Quarterly</option>
+          <option value="Half-Yearly">Half-Yearly</option>
+          <option value="Yearly">Yearly</option>
+        </select>
+
+        <input type="number" id="due_date" placeholder="Due Date (1 to 31)" min="1" max="31" required />
+
+        <select id="payment_mode" onchange="toggleUPI()" required>
+          <option value="">Payment Mode</option>
+          <option value="Online">Online</option>
+          <option value="Offline">Offline</option>
+        </select>
+
+        <input type="text" id="upi_id" class="hidden" placeholder="Enter UPI ID" />
+
+        <button type="submit">Save Student</button>
+
+      </form>
+
+      <a href="home.html" class="back-link">← Back to Home</a>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleUPI() {
+      const paymentMode = document.getElementById("payment_mode").value;
+      const upiField = document.getElementById("upi_id");
+
+      if (paymentMode.toLowerCase() === "online") {
+        upiField.classList.remove("hidden");
+        upiField.required = true;
+      } else {
+        upiField.classList.add("hidden");
+        upiField.required = false;
+        upiField.value = "";
+      }
+    }
+
+    async function saveStudent(event) {
+      event.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value.trim(),
+        mob_no: document.getElementById("mob_no").value.trim(),
+        subjects: document.getElementById("subjects").value.trim(),
+        total_fee: document.getElementById("total_fee").value,
+        due_date: document.getElementById("due_date").value,
+        parent_name: document.getElementById("parent_name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        fee_mode: document.getElementById("fee_mode").value,
+        payment_mode: document.getElementById("payment_mode").value,
+        class_no: document.getElementById("class_no").value.trim(),
+        upi_id: document.getElementById("upi_id").value.trim()
+      };
+
+      try {
+        const res = await fetch("/add-student", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const text = await res.text();
+
+        let result;
+        try {
+          result = JSON.parse(text);
+        } catch {
+          result = { message: text };
+        }
+
+        if (res.ok) {
+          alert(result.message || "Student Added Successfully");
+          document.querySelector("form").reset();
+          document.getElementById("upi_id").classList.add("hidden");
+        } else {
+          alert(result.message || "Error adding student");
+        }
+
+      } catch (error) {
+        alert("Server not responding");
+        console.log(error);
+      }
+    }
+  </script>
+
+</body>
+
+</html>

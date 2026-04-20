@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | Tuition Fee Tracker</title>
+  <link rel="stylesheet" href="signup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <div class="signup-page">
+    <!-- LEFT -->
+    <div class="signup-left">
+      <div class="brand-box">
+        <div class="brand-logo">TFT</div>
+        <div class="brand-text">
+          <h1>Tuition Fee Tracker</h1>
+          <p>Teacher Sign Up</p>
+        </div>
+      </div>
+      <span class="tag">Secure. Easy. Organized.</span>
+      <h2>Create Your Account</h2>
+      <p class="subtitle">
+        Register to manage student records, update fee details,
+        track payments, and receive reminders.
+      </p>
+    </div>
+    <!-- RIGHT -->
+    <div class="signup-right">
+      <div class="signup-card">
+        <h2>Teacher Sign Up</h2>
+        <p class="signup-note">Register with your details</p>
+        <form onsubmit="register(event)">
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="fullname" required>
+          </div>
+          <div class="input-group">
+            <label>Phone Number</label>
+            <input type="tel" id="phone" required>
+          </div>
+          <div class="input-group">
+            <label>Due Date</label>
+            <input type="number" id="dueDate" placeholder="Ex: 5" required>
+          </div>
+          <div class="otp-row">
+            <div class="input-group otp-input">
+              <label>OTP</label>
+              <input type="text" id="otp" placeholder="1234" required>
+            </div>
+            <button type="button" class="otp-btn" onclick="sendOTP()">
+              Send OTP
+            </button>
+          </div>
+          <div class="input-group">
+            <label>Email</label>
+            <input type="email" id="username" required>
+          </div>
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" required>
+          </div>
+          <button type="submit" class="signup-btn">
+            Create Account
+          </button>
+        </form>
+        <p class="bottom-text">
+          Already have an account?
+          <a href="login.html">Login</a>
+        </p>
+        <a href="index.html" class="back-home">
+          ← Back to Home
+        </a>
+      </div>
+    </div>
+  </div>
+  <script>
+    let generatedOTP = "";
+    /* SEND OTP */
+    async function sendOTP() {
+      let phone = document.getElementById("phone").value.trim();
+      let email = document.getElementById("username").value.trim();
+      if (!phone) {
+        alert("Enter phone number first");
+        return;
+      }
+      if (!email) {
+        alert("Enter email first");
+        return;
+      }
+      try {
+        const res = await fetch(
+          "/check-user?phone=" +
+          encodeURIComponent(phone) +
+          "&email=" +
+          encodeURIComponent(email)
+        );
+        const data = await res.json();
+        /* PHONE EXISTS */
+        if (data.phoneExists) {
+          alert("Number already registered. Please login");
+          window.location.href = "login.html";
+          return;
+        }
+        /* EMAIL EXISTS */
+        if (data.emailExists) {
+          alert("Email already registered. Please login");
+          window.location.href = "login.html";
+          return;
+        }
+        /* OTP */
+        generatedOTP =
+          Math.floor(1000 + Math.random() * 9000).toString();
+        alert("Your OTP is: " + generatedOTP);
+      } catch (error) {
+        console.log(error);
+        alert("Server not responding");
+      }
+    }
+    /* REGISTER */
+    async function register(event) {
+      event.preventDefault();
+      let name = document.getElementById("fullname").value.trim();
+      let phone = document.getElementById("phone").value.trim();
+      let dueDate = document.getElementById("dueDate").value.trim();
+      let otp = document.getElementById("otp").value.trim();
+      let email = document.getElementById("username").value.trim();
+      let password = document.getElementById("password").value.trim();
+      if (!name || !phone || !dueDate || !otp || !email || !password) {
+        alert("Please fill all fields!");
+        return;
+      }
+      if (otp !== generatedOTP) {
+        alert("Invalid OTP!");
+        return;
+      }
+      try {
+        /* AUTH SIGNUP */
+        const response = await fetch("/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            fullname: name,
+            phone: phone,
+            email: email,
+            password: password
+          })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          /* SAVE TEACHER PROFILE */
+          const teacherData = {
+            name: name,
+            email: email,
+            mob_no: phone,
+            due_date: dueDate
+          };
+          await fetch("/add-teacher", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(teacherData)
+          });
+          /* LOCAL STORAGE */
+          localStorage.setItem(
+            "teacherLogin",
+            JSON.stringify(teacherData)
+          );
+          alert("Registration successful!");
+          window.location.href = "home.html";
+        } else {
+          alert(data.message || "Registration Failed");
+        }
+      } catch (error) {
+        console.log(error);
+        alert("Server Error");
+      }
+    }
+  </script>
+</body>
+</html>

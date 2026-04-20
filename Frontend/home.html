@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TFT Dashboard Home</title>
+  <link rel="stylesheet" href="home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <div class="sidebar-brand">
+          <div class="sidebar-logo-circle">₹</div>
+        </div>
+        <nav class="sidebar-menu">
+          <a href="home.html" class="menu-item active">Home</a>
+          <a href="tuition-dashboard.html" class="menu-item">Fee Analytics</a>
+          <a href="student-analytics.html" class="menu-item">Student Analytics</a>
+          <a href="notifications.html" class="menu-item">Notifications</a>
+          <a href="settings.html" class="menu-item">Settings</a>
+        </nav>
+      </div>
+      <div class="sidebar-bottom">
+        <p class="user-name" id="userName">Teacher</p>
+        <button class="logout-btn" onclick="confirmLogout()">Logout</button>
+      </div>
+    </aside>
+    <!-- MAIN -->
+    <main class="main-content">
+      <header class="topbar">
+        <h1>Dashboard Home</h1>
+        <div class="profile-pic" id="profilePic">T</div>
+      </header>
+      <section class="cards-grid">
+        <!-- ADD STUDENT -->
+        <a href="add_s.html" class="home-card">
+          <div class="card-icon">➕</div>
+          <div>
+            <h3>Add Student</h3>
+            <p>Enter and manage complete student details</p>
+          </div>
+        </a>
+        <!-- FEE UPDATE -->
+        <a href="fee_s.html" class="home-card">
+          <div class="card-icon">💳</div>
+          <div>
+            <h3>Fee Update</h3>
+            <p>Update student payment details</p>
+          </div>
+        </a>
+        <!-- STUDENT ANALYTICS -->
+        <a href="student-analytics.html" class="home-card">
+          <div class="card-icon">📈</div>
+          <div>
+            <h3>Student Analytics</h3>
+            <p>Analyze student records and performance</p>
+          </div>
+        </a>
+        <a href="tuition-dashboard.html" class="home-card">
+          <div class="card-icon">📊</div>
+          <div>
+            <h3>Fee Analytics</h3>
+            <p>View collection, dues and trends</p>
+          </div>
+        </a>
+      </section>
+      <!-- CSV / EXCEL UPLOAD -->
+      <div class="upload-csv-wrap">
+        <button class="csv-upload-btn" onclick="document.getElementById('bankFile').click()">
+          Upload Bank Statement
+        </button>
+        <input type="file" id="bankFile" accept=".csv,.xlsx,.xls" style="display:none" onchange="uploadStatement(this)">
+        <p id="csvFileName" class="csv-file-name"></p>
+        <p id="uploadStatus" class="csv-file-name"></p>
+      </div>
+    </main>
+  </div>
+  <script>
+    /* LOAD LOGGED IN USER */
+    function loadUserDetails() {
+      const user =
+        JSON.parse(localStorage.getItem("teacherLogin"));
+      if (!user) return;
+      const name =
+        user.fullname || user.name || "Teacher";
+      /* sidebar name */
+      document.getElementById("userName").innerText = name;
+      /* profile icon */
+      document.getElementById("profilePic").innerText =
+        name.charAt(0).toUpperCase();
+    }
+    /* LOGOUT */
+    function confirmLogout() {
+      let confirmAction =
+        confirm("Are you sure you want to logout?");
+      if (confirmAction) {
+        localStorage.removeItem("teacherLogin");
+        window.location.href = "login.html";
+      }
+    }
+    /* CONNECTED TO uploadRoutes.js */
+    async function uploadStatement(input) {
+      const fileNameText =
+        document.getElementById("csvFileName");
+      const statusText =
+        document.getElementById("uploadStatus");
+      if (!input.files || !input.files[0]) {
+        return;
+      }
+      const file = input.files[0];
+      fileNameText.textContent =
+        "Selected File: " + file.name;
+      statusText.textContent = "Uploading...";
+      const formData = new FormData();
+      formData.append("file", file);
+      try {
+        const response =
+          await fetch("/upload-statement", {
+            method: "POST",
+            body: formData
+          });
+        const data = await response.json();
+        if (response.ok) {
+          statusText.innerHTML =
+            `✅ ${data.message}
+ | Inserted: ${data.inserted}
+ | Skipped: ${data.skipped}`;
+          if (data.unmatched_rows &&
+            data.unmatched_rows.length > 0) {
+            statusText.innerHTML +=
+              `<br>⚠️ Unmatched Rows:
+${data.unmatched_rows.length}`;
+          }
+        } else {
+          statusText.textContent =
+            "❌ Upload Failed";
+        }
+      } catch (error) {
+        console.log(error);
+        statusText.textContent =
+          "❌ Server Error";
+      }
+    }
+    /* RUN */
+    loadUserDetails();
+  </script>
+</body>
+</html>

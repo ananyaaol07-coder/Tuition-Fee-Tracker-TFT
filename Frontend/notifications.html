@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Notifications | TFT</title>
+	<link rel="stylesheet" href="home.css">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet">
+</head>
+<body>
+	<div class="dashboard">
+		<aside class="sidebar">
+			<div class="sidebar-top">
+				<div class="sidebar-brand">
+					<div class="sidebar-logo-circle">₹</div>
+				</div>
+				<nav class="sidebar-menu">
+					<a href="home.html" class="menu-item">Home</a>
+					<a href="tuition-dashboard.html" class="menu-item">Fee Analytics</a>
+					<a href="student-analytics.html" class="menu-item">Student Analytics</a>
+					<a href="notifications.html" class="menu-item active">Notifications</a>
+					<a href="settings.html" class="menu-item">Settings</a>
+				</nav>
+			</div>
+			<div class="sidebar-bottom">
+				<p class="user-name" id="userName">Teacher</p>
+				<button class="logout-btn" onclick="confirmLogout()">Logout</button>
+			</div>
+		</aside>
+		<main class="main-content">
+			<header class="topbar">
+				<div></div>
+				<div style="display:flex;gap:14px;align-items:center;">
+					<div class="profile-pic" id="profilePic">T</div>
+				</div>
+			</header>
+			<div class="table-card" style="display:block; margin-top:20px;">
+				<div class="table-top-row">
+					<h2 class="table-title">🔔 Notifications</h2>
+					<a href="home.html" class="back-btn">← Back</a>
+				</div>
+				<h3 class="section-title" style="margin-top:18px;">Today</h3>
+				<div class="notification-list" id="todayList"></div>
+				<h3 class="section-title">Earlier</h3>
+				<div class="notification-list" id="earlierList"></div>
+			</div>
+		</main>
+	</div>
+	<script>
+		function loadUserDetails() {
+			const user =
+				JSON.parse(localStorage.getItem("teacherLogin"));
+			if (!user) return;
+			const name =
+				user.name ||
+				user.fullname ||
+				user.t_name ||
+				"Teacher";
+			document.getElementById("userName").innerText = name;
+			document.getElementById("profilePic").innerText =
+				name.charAt(0).toUpperCase();
+		}
+		function confirmLogout() {
+			if (confirm("Logout?")) {
+				localStorage.removeItem("teacherLogin");
+				window.location.href = "login.html";
+			}
+		}
+		loadUserDetails();
+		async function loadNotifications() {
+			try {
+				const reportRes = await fetch("/report");
+				const reports = await reportRes.json();
+				const payRes = await fetch("/payments");
+				const payments = await payRes.json();
+				const stuRes = await fetch("/students");
+				const students = await stuRes.json();
+				const today = document.getElementById("todayList");
+				const earlier = document.getElementById("earlierList");
+				today.innerHTML = "";
+				earlier.innerHTML = "";
+				/* ===========================
+				TODAY NOTIFICATIONS
+				=========================== */
+				/* Pending Fees */
+				reports
+					.filter(x => x.remaining > 0)
+					.slice(0, 2)
+					.forEach(x => {
+						today.innerHTML += `
+<div class="notification-item urgent">
+<div class="icon">⚠️</div>
+<div class="content">
+<h4>Pending Fee Reminder</h4>
+<p>${x.name} has pending fee of ₹${x.remaining}</p>
+<span>Just now</span>
+</div>
+</div>
+`;
+					});
+				/* Latest Payment */
+				payments
+					.slice(0, 2)
+					.forEach(x => {
+						today.innerHTML += `
+<div class="notification-item success">
+<div class="icon">💰</div>
+<div class="content">
+<h4>Payment Received</h4>
+<p>${x.name} paid ₹${x.amount} successfully</p>
+<span>${x.payment_date}</span>
+</div>
+</div>
+`;
+					});
+				/* Latest Student Added */
+				students
+					.slice(0, 1)
+					.forEach(x => {
+						today.innerHTML += `
+<div class="notification-item info">
+<div class="icon">➕</div>
+<div class="content">
+<h4>New Student Added</h4>
+<p>${x.name} added to Class ${x.class_no}</p>
+<span>Recently</span>
+</div>
+</div>
+`;
+					});
+				/* ===========================
+				EARLIER
+				=========================== */
+				let pendingCount =
+					reports.filter(x => x.remaining > 0).length;
+				earlier.innerHTML += `
+<div class="notification-item warning">
+<div class="icon">⏰</div>
+<div class="content">
+<h4>Fee Due Reminder</h4>
+<p>${pendingCount} students have pending dues</p>
+<span>Today morning</span>
+</div>
+</div>
+`;
+				reports
+					.filter(x => x.payment_timing === "Paid Late")
+					.slice(0, 2)
+					.forEach(x => {
+						earlier.innerHTML += `
+<div class="notification-item success">
+<div class="icon">💳</div>
+<div class="content">
+<h4>Fee Updated</h4>
+<p>${x.name} fee record updated</p>
+<span>${x.last_payment_date || "Yesterday"}</span>
+</div>
+</div>
+`;
+					});
+				earlier.innerHTML += `
+<div class="notification-item info">
+<div class="icon">📊</div>
+<div class="content">
+<h4>Monthly Report Ready</h4>
+<p>Fee analytics report generated</p>
+<span>2 days ago</span>
+</div>
+</div>
+`;
+			} catch (error) {
+				console.log(error);
+				alert("Unable to load notifications");
+			}
+		}
+		loadNotifications();
+	</script>
+</body>
+</html>
