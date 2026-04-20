@@ -40,3 +40,4 @@ desc students;
 show tables;
 
 select * from teachers;
+select * from users;
