@@ -1,51 +1,101 @@
-﻿id,name,mob_no,subjects,total_fee,due_date,parent_name,email,fee_mode,payment_mode,class_no,upi_id,reminder_count
-1,Ananya,8446438711,Maths,1500,5,Renu,ananya@gmail.com,Monthly,Online,10,ananya@upi,0
-2,Priyanshi,9391843206,Maths,5000,5,Nitish,priyanshi@gmail.com,Quarterly,Online,10,priyanshi@upi,0
-3,Rahul Sharma,9876543210,Maths,25000,5,Ramesh Sharma,rahul@gmail.com,Monthly,Online,10,rahul@upi,0
-4,Priya Reddy,9123456780,Science,22000,10,Suresh Reddy,priya@gmail.com,Monthly,Offline,9,,0
-5,Arjun Kumar,9988776655,English,18000,15,Raj Kumar,arjun@gmail.com,Quarterly,Online,8,arjun@upi,0
-6,Sneha Rao,9012345678,Physics,26000,5,Mahesh Rao,sneha@gmail.com,Monthly,Offline,10,,0
-7,Vikram Patel,9345678123,Chemistry,24000,10,Ravi Patel,vikram@gmail.com,Monthly,Online,9,vikram@upi,0
-8,Megha Das,9871203456,Biology,23000,15,Sunil Das,megha@gmail.com,Quarterly,Offline,8,,0
-9,Kiran Yadav,9812345670,Maths,25000,5,Naresh Yadav,kiran@gmail.com,Monthly,Online,10,kiran@upi,0
-10,Divya Singh,9345612780,Science,22000,10,Ajit Singh,divya@gmail.com,Monthly,Offline,9,,0
-11,Rohan Gupta,9765432109,English,18000,15,Vijay Gupta,rohan@gmail.com,Quarterly,Online,8,rohan@upi,0
-12,Pooja Jain,9098765432,Computer,27000,5,Amit Jain,pooja@gmail.com,Monthly,Offline,10,,0
-13,Ajay Verma,9871112233,Accounts,26000,10,Rakesh Verma,ajay@gmail.com,Monthly,Online,11,ajay@upi,0
-14,Neha Joshi,9122233445,Economics,24000,15,Prakash Joshi,neha@gmail.com,Quarterly,Offline,11,,0
-15,Sanjay Rao,9873344556,Maths,25000,5,Mohan Rao,sanjay@gmail.com,Monthly,Online,10,sanjay@upi,0
-16,Kavya Nair,9344455667,Chemistry,24000,10,Hari Nair,kavya@gmail.com,Monthly,Offline,9,,0
-17,Tarun Shah,9765566778,English,18000,15,Ritesh Shah,tarun@gmail.com,Quarterly,Online,8,tarun@upi,0
-18,Anjali Mehta,9876677889,Biology,23000,5,Deepak Mehta,anjali@gmail.com,Monthly,Offline,10,,0
-19,Manoj Kumar,9127788990,Physics,26000,10,Ashok Kumar,manoj@gmail.com,Monthly,Online,9,manoj@upi,0
-20,Rekha Devi,9988899001,History,21000,15,Gopal Devi,rekha@gmail.com,Quarterly,Offline,8,,0
-21,Nitin Rao,9011122233,Geography,22000,5,Raman Rao,nitin@gmail.com,Monthly,Online,10,nitin@upi,0
-22,Swathi Reddy,9342233445,Science,22000,10,Murali Reddy,swathi@gmail.com,Monthly,Offline,9,,0
-23,Harsha Kumar,9879988776,Political Science,23000,15,Balu Kumar,harsha@gmail.com,Quarterly,Online,12,harsha@upi,0
-24,Lavanya Singh,9128877665,Maths,25000,5,Tej Singh,lavanya@gmail.com,Monthly,Offline,10,,0
-25,Siddharth Jain,9987766554,Commerce,26000,10,Nakul Jain,siddharth@gmail.com,Monthly,Online,11,siddharth@upi,0
-26,Bhavana Rao,9016655443,English,18000,15,Srinivas Rao,bhavana@gmail.com,Quarterly,Offline,8,,0
-27,Varun Patel,9345544332,Computer,27000,5,Ketan Patel,varun@gmail.com,Monthly,Online,10,varun@upi,0
-28,Nisha Gupta,9874433221,Economics,24000,10,Anil Gupta,nisha@gmail.com,Monthly,Offline,11,,0
-29,Yash Sharma,9123322110,Physics,26000,15,Rajesh Sharma,yash@gmail.com,Quarterly,Online,9,yash@upi,0
-30,Deepa Nair,9982211009,Maths,25000,5,Sajith Nair,deepa@gmail.com,Monthly,Offline,10,,0
-31,Ritu Verma,9011100998,Chemistry,24000,10,Madan Verma,ritu@gmail.com,Monthly,Online,9,ritu@upi,0
-32,Akash Das,9340099887,Biology,23000,15,Ranjan Das,akash@gmail.com,Quarterly,Offline,8,,0
-33,Swathi,7601010892,Science,60000,5,Ramesh,swathi2@gmail.com,Quarterly,Online,8,swathi@upi,0
-34,Aanshi,6263403454,DBMS,10000,10,PQR,aanshi@gmail.com,Monthly,Offline,12,,0
-35,Hanvitha,7989123770,LADE,20000,5,ABC,hanvitha@gmail.com,Monthly,Online,12,hanvitha@upi,0
-36,Hasya,9515793976,Science,5998,10,Rao,hasya@gmail.com,Monthly,Offline,9,,0
-37,Karthik,9876543001,Maths,25000,5,Mohan,karthik@gmail.com,Monthly,Online,10,karthik@upi,0
-38,Ishita,9876543002,English,18000,15,Rajesh,ishita@gmail.com,Quarterly,Offline,8,,0
-39,Naveen,9876543003,Science,22000,10,Kumar,naveen@gmail.com,Monthly,Online,9,naveen@upi,0
-40,Keerthi,9876543004,Physics,26000,5,Naresh,keerthi@gmail.com,Monthly,Offline,10,,0
-41,Tejas,9876543005,Chemistry,24000,10,Sharma,tejas@gmail.com,Monthly,Online,9,tejas@upi,0
-42,Nandini,9876543006,Biology,23000,15,Patel,nandini@gmail.com,Quarterly,Offline,8,,0
-43,Uday,9876543007,Computer,27000,5,Singh,uday@gmail.com,Monthly,Online,10,uday@upi,0
-44,Komal,9876543008,Accounts,26000,10,Verma,komal@gmail.com,Monthly,Offline,11,,0
-45,Surya,9876543009,Economics,24000,15,Rao,surya@gmail.com,Quarterly,Online,11,surya@upi,0
-46,Mounika,9876543010,History,21000,5,Reddy,mounika@gmail.com,Monthly,Offline,8,,0
-47,Pavani,9876543011,Geography,22000,10,Kumar,pavani@gmail.com,Monthly,Online,10,pavani@upi,0
-48,Lokesh,9876543012,Commerce,26000,15,Sharma,lokesh@gmail.com,Quarterly,Offline,11,,0
-49,Chaitu,9876543013,Political Science,23000,5,Patel,chaitu@gmail.com,Monthly,Online,12,chaitu@upi,0
-50,Gowri,9876543014,DBMS,10000,10,Das,gowri@gmail.com,Monthly,Offline,12,,0
+id,name,mob_no,subjects,total_fee,due_date,parent_name,email,fee_mode,payment_mode,class_no,upi_id,reminder_count
+1,Aarav Sharma,9876500001,Maths,24000,5,Rajesh Sharma,aarav1@gmail.com,Monthly,Online,8,aarav1@upi,1
+2,Diya Reddy,9876500002,Science,30000,10,Suresh Reddy,diya2@gmail.com,Quarterly,Offline,9,,0
+3,Vivaan Patel,9876500003,English,36000,15,Rakesh Patel,vivaan3@gmail.com,Half-Yearly,Online,10,vivaan3@upi,2
+4,Ananya Rao,9876500004,Physics,48000,5,Mahesh Rao,ananya4@gmail.com,Annually,Online,11,ananya4@upi,1
+5,Aditya Singh,9876500005,Chemistry,24000,10,Ajit Singh,aditya5@gmail.com,Monthly,Offline,12,,0
+6,Megha Das,9876500006,Biology,30000,15,Sunil Das,megha6@gmail.com,Quarterly,Online,8,megha6@upi,1
+7,Krishna Kumar,9876500007,Maths,36000,5,Ravi Kumar,krishna7@gmail.com,Half-Yearly,Offline,9,,0
+8,Sneha Verma,9876500008,Science,48000,10,Manoj Verma,sneha8@gmail.com,Annually,Online,10,sneha8@upi,2
+9,Rohan Gupta,9876500009,English,24000,15,Amit Gupta,rohan9@gmail.com,Monthly,Online,11,rohan9@upi,1
+10,Priya Nair,9876500010,Physics,30000,5,Rajeev Nair,priya10@gmail.com,Quarterly,Offline,12,,0
+11,Arjun Mehta,9876500011,Chemistry,36000,10,Sanjay Mehta,arjun11@gmail.com,Half-Yearly,Online,8,arjun11@upi,1
+12,Isha Yadav,9876500012,Biology,48000,15,Naresh Yadav,isha12@gmail.com,Annually,Offline,9,,0
+13,Karan Joshi,9876500013,Maths,24000,5,Deepak Joshi,karan13@gmail.com,Monthly,Online,10,karan13@upi,2
+14,Nisha Kapoor,9876500014,Science,30000,10,Rohit Kapoor,nisha14@gmail.com,Quarterly,Online,11,nisha14@upi,1
+15,Varun Mishra,9876500015,English,36000,15,Vikas Mishra,varun15@gmail.com,Half-Yearly,Offline,12,,0
+16,Pooja Iyer,9876500016,Physics,48000,5,Sridhar Iyer,pooja16@gmail.com,Annually,Online,8,pooja16@upi,1
+17,Harsh Jain,9876500017,Chemistry,24000,10,Rakesh Jain,harsh17@gmail.com,Monthly,Offline,9,,0
+18,Kavya Rao,9876500018,Biology,30000,15,Murali Rao,kavya18@gmail.com,Quarterly,Online,10,kavya18@upi,2
+19,Siddharth Roy,9876500019,Maths,36000,5,Sumit Roy,siddharth19@gmail.com,Half-Yearly,Online,11,siddharth19@upi,1
+20,Tanvi Shah,9876500020,Science,48000,10,Hitesh Shah,tanvi20@gmail.com,Annually,Offline,12,,0
+21,Ritvik Sen,9876500021,English,24000,15,Ashok Sen,ritvik21@gmail.com,Monthly,Online,8,ritvik21@upi,1
+22,Neha Pillai,9876500022,Physics,30000,5,Vinod Pillai,neha22@gmail.com,Quarterly,Offline,9,,0
+23,Yash Malhotra,9876500023,Chemistry,36000,10,Rahul Malhotra,yash23@gmail.com,Half-Yearly,Online,10,yash23@upi,2
+24,Simran Kaur,9876500024,Biology,48000,15,Gurpreet Kaur,simran24@gmail.com,Annually,Online,11,simran24@upi,1
+25,Dev Arora,9876500025,Maths,24000,5,Anil Arora,dev25@gmail.com,Monthly,Offline,12,,0
+26,Riya Chawla,9876500026,Science,30000,10,Sachin Chawla,riya26@gmail.com,Quarterly,Online,8,riya26@upi,1
+27,Manav Bhat,9876500027,English,36000,15,Prakash Bhat,manav27@gmail.com,Half-Yearly,Offline,9,,0
+28,Anika Soni,9876500028,Physics,48000,5,Nitin Soni,anika28@gmail.com,Annually,Online,10,anika28@upi,2
+29,Rudra Kulkarni,9876500029,Chemistry,24000,10,Mohan Kulkarni,rudra29@gmail.com,Monthly,Online,11,rudra29@upi,1
+30,Sana Khan,9876500030,Biology,30000,15,Imran Khan,sana30@gmail.com,Quarterly,Offline,12,,0
+31,Aarohi Gupta,9876500031,Maths,36000,5,Manish Gupta,aarohi31@gmail.com,Half-Yearly,Online,8,aarohi31@upi,1
+32,Parth Saxena,9876500032,Science,48000,10,Rajiv Saxena,parth32@gmail.com,Annually,Offline,9,,0
+33,Myra Das,9876500033,English,24000,15,Sanjiv Das,myra33@gmail.com,Monthly,Online,10,myra33@upi,2
+34,Daksh Anand,9876500034,Physics,30000,5,Vivek Anand,daksh34@gmail.com,Quarterly,Online,11,daksh34@upi,1
+35,Kiara Nanda,9876500035,Chemistry,36000,10,Ramesh Nanda,kiara35@gmail.com,Half-Yearly,Offline,12,,0
+36,Om Tiwari,9876500036,Biology,48000,15,Pradeep Tiwari,om36@gmail.com,Annually,Online,8,om36@upi,1
+37,Zoya Ali,9876500037,Maths,24000,5,Sameer Ali,zoya37@gmail.com,Monthly,Offline,9,,0
+38,Vedant Rao,9876500038,Science,30000,10,Satish Rao,vedant38@gmail.com,Quarterly,Online,10,vedant38@upi,2
+39,Trisha Jain,9876500039,English,36000,15,Alok Jain,trisha39@gmail.com,Half-Yearly,Online,11,trisha39@upi,1
+40,Nakul Seth,9876500040,Physics,48000,5,Amit Seth,nakul40@gmail.com,Annually,Offline,12,,0
+41,Ayaan Kapoor,9876500041,Chemistry,24000,10,Rohan Kapoor,ayaan41@gmail.com,Monthly,Online,8,ayaan41@upi,1
+42,Rhea Bansal,9876500042,Biology,30000,15,Kunal Bansal,rhea42@gmail.com,Quarterly,Offline,9,,0
+43,Shiv Malviya,9876500043,Maths,36000,5,Nitin Malviya,shiv43@gmail.com,Half-Yearly,Online,10,shiv43@upi,2
+44,Tara Sen,9876500044,Science,48000,10,Anup Sen,tara44@gmail.com,Annually,Online,11,tara44@upi,1
+45,Rajveer Gill,9876500045,English,24000,15,Harjit Gill,rajveer45@gmail.com,Monthly,Offline,12,,0
+46,Avni Sinha,9876500046,Physics,30000,5,Deepak Sinha,avni46@gmail.com,Quarterly,Online,8,avni46@upi,1
+47,Kush Agarwal,9876500047,Chemistry,36000,10,Manoj Agarwal,kush47@gmail.com,Half-Yearly,Offline,9,,0
+48,Navya Iyer,9876500048,Biology,48000,15,Suresh Iyer,navya48@gmail.com,Annually,Online,10,navya48@upi,2
+49,Devansh Roy,9876500049,Maths,24000,5,Ajay Roy,devansh49@gmail.com,Monthly,Online,11,devansh49@upi,1
+50,Siya Puri,9876500050,Science,30000,10,Arvind Puri,siya50@gmail.com,Quarterly,Offline,12,,0
+51,Riyan Mehta,9876500051,English,36000,15,Sunil Mehta,riyan51@gmail.com,Half-Yearly,Online,8,riyan51@upi,1
+52,Anvi Sharma,9876500052,Physics,48000,5,Raj Sharma,anvi52@gmail.com,Annually,Offline,9,,0
+53,Kabir Jain,9876500053,Chemistry,24000,10,Manish Jain,kabir53@gmail.com,Monthly,Online,10,kabir53@upi,2
+54,Ira Patel,9876500054,Biology,30000,15,Rakesh Patel,ira54@gmail.com,Quarterly,Online,11,ira54@upi,1
+55,Reyansh Rao,9876500055,Maths,36000,5,Suresh Rao,reyansh55@gmail.com,Half-Yearly,Offline,12,,0
+56,Meera Singh,9876500056,Science,48000,10,Ajit Singh,meera56@gmail.com,Annually,Online,8,meera56@upi,1
+57,Dhruv Kumar,9876500057,English,24000,15,Ravi Kumar,dhruv57@gmail.com,Monthly,Offline,9,,0
+58,Kiara Das,9876500058,Physics,30000,5,Sunil Das,kiara58@gmail.com,Quarterly,Online,10,kiara58@upi,2
+59,Arnav Verma,9876500059,Chemistry,36000,10,Manoj Verma,arnav59@gmail.com,Half-Yearly,Online,11,arnav59@upi,1
+60,Diya Gupta,9876500060,Biology,48000,15,Amit Gupta,diya60@gmail.com,Annually,Offline,12,,0
+61,Krish Nair,9876500061,Maths,24000,5,Rajeev Nair,krish61@gmail.com,Monthly,Online,8,krish61@upi,1
+62,Mysha Yadav,9876500062,Science,30000,10,Naresh Yadav,mysha62@gmail.com,Quarterly,Offline,9,,0
+63,Veer Joshi,9876500063,English,36000,15,Deepak Joshi,veer63@gmail.com,Half-Yearly,Online,10,veer63@upi,2
+64,Pari Kapoor,9876500064,Physics,48000,5,Rohit Kapoor,pari64@gmail.com,Annually,Online,11,pari64@upi,1
+65,Ayush Mishra,9876500065,Chemistry,24000,10,Vikas Mishra,ayush65@gmail.com,Monthly,Offline,12,,0
+66,Saanvi Iyer,9876500066,Biology,30000,15,Sridhar Iyer,saanvi66@gmail.com,Quarterly,Online,8,saanvi66@upi,1
+67,Rudransh Jain,9876500067,Maths,36000,5,Rakesh Jain,rudransh67@gmail.com,Half-Yearly,Offline,9,,0
+68,Aadhya Rao,9876500068,Science,48000,10,Murali Rao,aadhya68@gmail.com,Annually,Online,10,aadhya68@upi,2
+69,Yuvan Roy,9876500069,English,24000,15,Sumit Roy,yuvan69@gmail.com,Monthly,Online,11,yuvan69@upi,1
+70,Navya Shah,9876500070,Physics,30000,5,Hitesh Shah,navya70@gmail.com,Quarterly,Offline,12,,0
+71,Ritvik Sen,9876500071,Chemistry,36000,10,Ashok Sen,ritvik71@gmail.com,Half-Yearly,Online,8,ritvik71@upi,1
+72,Ishita Pillai,9876500072,Biology,48000,15,Vinod Pillai,ishita72@gmail.com,Annually,Offline,9,,0
+73,Kiaan Malhotra,9876500073,Maths,24000,5,Rahul Malhotra,kiaan73@gmail.com,Monthly,Online,10,kiaan73@upi,2
+74,Simar Kaur,9876500074,Science,30000,10,Gurpreet Kaur,simar74@gmail.com,Quarterly,Online,11,simar74@upi,1
+75,Arush Arora,9876500075,English,36000,15,Anil Arora,arush75@gmail.com,Half-Yearly,Offline,12,,0
+76,Ruhi Chawla,9876500076,Physics,48000,5,Sachin Chawla,ruhi76@gmail.com,Annually,Online,8,ruhi76@upi,1
+77,Vihaan Bhat,9876500077,Chemistry,24000,10,Prakash Bhat,vihaan77@gmail.com,Monthly,Offline,9,,0
+78,Anika Soni,9876500078,Biology,30000,15,Nitin Soni,anika78@gmail.com,Quarterly,Online,10,anika78@upi,2
+79,Rudraksh Kulkarni,9876500079,Maths,36000,5,Mohan Kulkarni,rudraksh79@gmail.com,Half-Yearly,Online,11,rudraksh79@upi,1
+80,Sara Khan,9876500080,Science,48000,10,Imran Khan,sara80@gmail.com,Annually,Offline,12,,0
+81,Aarohi Gupta,9876500081,English,24000,15,Manish Gupta,aarohi81@gmail.com,Monthly,Online,8,aarohi81@upi,1
+82,Parth Saxena,9876500082,Physics,30000,5,Rajiv Saxena,parth82@gmail.com,Quarterly,Offline,9,,0
+83,Myra Das,9876500083,Chemistry,36000,10,Sanjiv Das,myra83@gmail.com,Half-Yearly,Online,10,myra83@upi,2
+84,Daksh Anand,9876500084,Biology,48000,15,Vivek Anand,daksh84@gmail.com,Annually,Online,11,daksh84@upi,1
+85,Kiara Nanda,9876500085,Maths,24000,5,Ramesh Nanda,kiara85@gmail.com,Monthly,Offline,12,,0
+86,Om Tiwari,9876500086,Science,30000,10,Pradeep Tiwari,om86@gmail.com,Quarterly,Online,8,om86@upi,1
+87,Zoya Ali,9876500087,English,36000,15,Sameer Ali,zoya87@gmail.com,Half-Yearly,Offline,9,,0
+88,Vedant Rao,9876500088,Physics,48000,5,Satish Rao,vedant88@gmail.com,Annually,Online,10,vedant88@upi,2
+89,Trisha Jain,9876500089,Chemistry,24000,10,Alok Jain,trisha89@gmail.com,Monthly,Online,11,trisha89@upi,1
+90,Nakul Seth,9876500090,Biology,30000,15,Amit Seth,nakul90@gmail.com,Quarterly,Offline,12,,0
+91,Ananya Kolluru,8446438711,Maths,15000,5,Ramesh Kolluru,ananya@gmail.com,Half-Yearly,Online,10,ananya@upi,0
+92,Bharat Mahale,7498209297,Physics,50000,10,Prashant Mahale,bharat@gmail.com,Annually,Offline,10,,0
+93,Priyanshi Panja,9391843206,English,25000,5,Nitish Panja,priyanshi@gmail.com,Monthly,Offline,12,,1
+94,Hasya Surabhi,9515793976,Science,10000,5,Ram Mohan Rao,hasya@gmail.com,Monthly,Online,5,hasya@upi,0
+95,Hanvitha,7989123770,Physics,24000,10,Koushik,hanv@gmail.com,Annually,Offline,11,,0
+96,Dorik Pranjal,8459549955,Maths,23000,10,Anil Dorik,pranjal@gmail.com,Monthly,Online,12,pranjal@upi,1
+97,Kush Agarwal,9876500097,Maths,24000,5,Manoj Agarwal,kush97@gmail.com,Monthly,Offline,9,,0
+98,Navya Iyer,9876500098,Science,30000,10,Suresh Iyer,navya98@gmail.com,Quarterly,Online,10,navya98@upi,2
+99,Devansh Roy,9876500099,English,36000,15,Ajay Roy,devansh99@gmail.com,Half-Yearly,Online,11,devansh99@upi,1
+100,Siya Puri,9876500100,Physics,48000,5,Arvind Puri,siya100@gmail.com,Annually,Offline,12,,0

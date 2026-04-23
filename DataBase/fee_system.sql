@@ -35,25 +35,18 @@ CREATE TABLE users (
  password VARCHAR(100)
 );
 
-desc students;
 
 show tables;
 
 select * from teachers;
 select * from users;
-
-
-
-
-
-
-desc students;
-
 select * from students;
 select * from payments;
 
 desc students;
 desc payments;
+desc teachers;
+desc users;
 
 SET SQL_SAFE_UPDATES = 0;
 
@@ -131,3 +124,11 @@ VALUES
 (9, 18000, 'Offline', NULL, '2026-03-18 09:20:00', NULL),
 (10, 13500, 'Online', 900001211, '2026-03-19 12:10:00', 'pooja@upi'),
 (11, 26000, 'Offline', NULL, '2026-03-20 02:25:00', NULL);
+
+
+ALTER TABLE teachers
+ADD CONSTRAINT fk_teacher_user
+FOREIGN KEY (email)
+REFERENCES users(email)
+ON DELETE CASCADE
+ON UPDATE CASCADE;
